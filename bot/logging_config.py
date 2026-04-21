@@ -2,7 +2,6 @@ import logging
 import logging.handlers
 from pathlib import Path
 
-
 LOG_DIR = Path(__file__).parent.parent / "logs"
 LOG_FILE = LOG_DIR / "trading_bot.log"
 MAX_BYTES = 5 * 1024 * 1024   # 5 MB per log file

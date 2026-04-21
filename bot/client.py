@@ -5,7 +5,6 @@ import hmac
 import os
 import time
 import urllib.parse
-from typing import Any
 
 import httpx
 from dotenv import load_dotenv
@@ -115,7 +114,8 @@ class BinanceFuturesClient:
         if signed:
             params = self._sign(params)
 
-        logger.debug("GET %s | params=%s", endpoint, {k: v for k, v in params.items() if k != "signature"})
+        safe_params = {k: v for k, v in params.items() if k != "signature"}
+        logger.debug("GET %s | params=%s", endpoint, safe_params)
 
         response = self._http.get(endpoint, params=params)
         return self._handle_response(response)

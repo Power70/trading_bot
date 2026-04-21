@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import sys
 from typing import Optional
 
 import typer
@@ -29,7 +28,8 @@ def _print_request_summary(params: dict) -> None:
     table.add_column("Value", style="white")
 
     table.add_row("Symbol", params["symbol"])
-    table.add_row("Side", f"[green]{params['side']}[/green]" if params["side"] == "BUY" else f"[red]{params['side']}[/red]")
+    side_color = "green" if params["side"] == "BUY" else "red"
+    table.add_row("Side", f"[{side_color}]{params['side']}[/{side_color}]")
     table.add_row("Order Type", params["order_type"])
     table.add_row("Quantity", str(params["quantity"]))
     if "price" in params:
@@ -72,8 +72,12 @@ def order(
     side: str = typer.Option(..., "--side", help="BUY or SELL"),
     order_type: str = typer.Option(..., "--type", "-t", help="MARKET or LIMIT (or STOP_MARKET)"),
     quantity: float = typer.Option(..., "--quantity", "-q", help="Order quantity"),
-    price: Optional[float] = typer.Option(None, "--price", "-p", help="Limit price (required for LIMIT orders)"),
-    stop_price: Optional[float] = typer.Option(None, "--stop-price", help="Stop trigger price (for STOP_MARKET orders)"),
+    price: Optional[float] = typer.Option(
+        None, "--price", "-p", help="Limit price (required for LIMIT orders)"
+    ),
+    stop_price: Optional[float] = typer.Option(
+        None, "--stop-price", help="Stop trigger price (for STOP_MARKET orders)"
+    ),
 ):
     """Place a MARKET or LIMIT order on Binance Futures Testnet."""
 
@@ -135,7 +139,9 @@ def order(
         raise typer.Exit(code=1)
 
     # --- Step 5: Display success ---
-    console.print(Panel("[bold green]✓ Order placed successfully![/bold green]", border_style="green"))
+    console.print(
+        Panel("[bold green]✓ Order placed successfully![/bold green]", border_style="green")
+    )
     _print_order_response(response)
 
 
@@ -203,7 +209,9 @@ def interactive():
         ))
         raise typer.Exit(code=1)
 
-    console.print(Panel("[bold green]✓ Order placed successfully![/bold green]", border_style="green"))
+    console.print(
+        Panel("[bold green]✓ Order placed successfully![/bold green]", border_style="green")
+    )
     _print_order_response(response)
 
 
