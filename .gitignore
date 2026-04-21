@@ -1,0 +1,26 @@
+# Environment secrets — NEVER commit these
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# uv
+.venv/
+uv.lock
+
+# Logs (keep .gitkeep, ignore actual logs)
+logs/*.log
+logs/*.log.*
+!logs/sample_orders.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
