@@ -33,15 +33,15 @@ source .venv/bin/activate   # macOS/Linux
 
 ### Place a MARKET order
 
-python cli.py order --symbol BTCUSDT --side BUY --type MARKET --quantity 0.01
+uv run python cli.py order --symbol BTCUSDT --side BUY --type MARKET --quantity 0.01
 
 ### Place a LIMIT order
 
-python cli.py order --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.01 --price 95000
+uv run python cli.py order --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.01 --price 95000
 
 ### Get help
 
-python cli.py order --help
+uv run python cli.py order --help
 
 ### Using the installed script (after uv sync)
 
@@ -50,10 +50,19 @@ trade order --symbol ETHUSDT --side BUY --type MARKET --quantity 0.1
 ## Examples
 
 #### Buy 0.01 BTC at market price
-python cli.py order -s BTCUSDT --side BUY -t MARKET -q 0.01
+uv run python cli.py order -s BTCUSDT --side BUY -t MARKET -q 0.01
+
+#### Buy 0.04 BTC at market price
+uv run python cli.py order --symbol BTCUSDT --side BUY --type MARKET --quantity 0.04
 
 #### Sell 0.01 BTC with a limit at $95,000
-python cli.py order -s BTCUSDT --side SELL -t LIMIT -q 0.01 -p 95000
+uv run python cli.py order -s BTCUSDT --side SELL -t LIMIT -q 0.01 -p 95000
+
+#### Place a Stop-Market order (Bonus)
+uv run python cli.py order -s BTCUSDT --side SELL -t STOP_MARKET -q 0.01 --stop-price 90000
+
+#### Launch Interactive Mode (Bonus)
+uv run python cli.py interactive
 
 ## Logs
 
