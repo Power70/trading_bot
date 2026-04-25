@@ -23,6 +23,9 @@ uv sync
 
 cp .env.example .env
 # Edit .env and fill in your API key and secret
+BINANCE_TESTNET_API_KEY=your_testnet_API_Key
+BINANCE_TESTNET_SECRET_KEY=your_Testnet_Secret_Key
+BINANCE_TESTNET_BASE_URL=https://testnet.binancefuture.com
 
 ### 4. Activate the virtual environment
 
